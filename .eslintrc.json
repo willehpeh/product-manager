@@ -22,9 +22,13 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
+                "sourceTag": "domain",
+                "onlyDependOnLibsWithTags": []
+              },
+              {
+                "sourceTag": "application",
                 "onlyDependOnLibsWithTags": [
-                  "*"
+                  "domain"
                 ]
               }
             ]
