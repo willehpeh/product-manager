@@ -7,5 +7,13 @@
     "domain"
   ],
   "// targets": "to see all targets run: nx show project domain --web",
-  "targets": {}
+  "targets": {
+    "test:watch": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/domain/jest.config.ts",
+        "watch": true
+      }
+    }
+  }
 }

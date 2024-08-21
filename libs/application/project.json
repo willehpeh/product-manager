@@ -7,5 +7,13 @@
     "application"
   ],
   "// targets": "to see all targets run: nx show project application --web",
-  "targets": {}
+  "targets": {
+    "test:watch": {
+      "executor": "@nx/jest:jest",
+      "options": {
+        "jestConfig": "libs/application/jest.config.ts",
+        "watch": true
+      }
+    }
+  }
 }
