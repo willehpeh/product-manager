@@ -1,5 +1,4 @@
-import { EntityId } from '../shared/EntityId';
-import { InvalidIdError } from '../shared/InvalidIdError';
+import { EntityId, InvalidIdError } from '../shared';
 
 export class ProductId extends EntityId {
   private readonly _value: string;
