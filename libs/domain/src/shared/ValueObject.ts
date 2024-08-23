@@ -1,12 +1,4 @@
-export abstract class ValueObject<T extends string | boolean | number> {
-
+export abstract class ValueObject<T> {
   abstract value(): T;
-  abstract toString(): string;
-
-  equals(other: ValueObject<T>): boolean {
-    return (
-      other.value() === this.value() &&
-      other.constructor.name === this.constructor.name
-    );
-  }
+  abstract equals(other: ValueObject<T>): boolean;
 }
