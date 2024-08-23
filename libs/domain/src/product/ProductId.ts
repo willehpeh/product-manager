@@ -1,15 +1,20 @@
 import { EntityId } from '../shared/EntityId';
-import { InvalidIdError } from '../shared/InvalidIdError';
 import * as crypto from 'node:crypto';
+import { InvalidIdError } from '../shared/InvalidIdError';
 
 export class ProductId extends EntityId {
-
-  private static readonly prefix = 'PRODUCT';
-
+  private readonly prefix = 'PRODUCT';
   private readonly _value: string;
 
-  private constructor(idAsString: string) {
+  constructor(idAsString?: string) {
     super();
+    if (!idAsString) {
+      this._value = this.generate();
+      return;
+    }
+    if (!this.isValidProductId(idAsString)) {
+      throw new InvalidIdError();
+    }
     this._value = idAsString;
   }
 
@@ -17,24 +22,12 @@ export class ProductId extends EntityId {
     return this._value;
   }
 
-  static new(): ProductId {
-    const id = this.generate();
-    return new ProductId(id);
-  }
-
-  static fromString(idAsString: string): ProductId {
-    if (!this.isValidProductId(idAsString)) {
-      throw new InvalidIdError();
-    }
-    return new ProductId(idAsString);
-  }
-
-  private static generate(): string {
+  private generate(): string {
     const uuid = crypto.randomUUID();
-    return `${ this.prefix }-${ uuid }`;
+    return `${this.prefix}-${uuid}`;
   }
 
-  private static isValidProductId(idAsString: string): boolean {
+  private isValidProductId(idAsString: string): boolean {
     return idAsString.length > 0;
   }
 }
